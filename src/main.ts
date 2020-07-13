@@ -4,11 +4,13 @@ import loadEvents from './Loader/event';
 import loadCommands from './Loader/command';
 import * as YAML from 'yamljs';
 import * as path from 'path';
+import sequelize from './config/sequelize.config';
 
 
 const client: any = new Client();
 client.setting = YAML.load(path.resolve(__dirname, 'config/setting.yml'));
-client.logger = require(path.resolve(__dirname, 'utils/logger'))
+client.logger = require(path.resolve(__dirname, 'utils/logger'));
+client.sequelize = sequelize
 client.levelCache = {};
 for (let i=0; i < config.permLevels.length; i++) {
     const thisLevel = config.permLevels[i];
