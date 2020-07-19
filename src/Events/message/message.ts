@@ -8,9 +8,8 @@ module.exports = (client: any, message: any) => {
   const commandName = args.shift().toLowerCase();
 
 
-// play = aliases 'p' 
-//vérifier l'aliase 'cmd.help.aliases'
   const command = client.commands.get(commandName) || client.commands.find((cmd: any) => cmd.help.aliases && cmd.help.aliases.includes(commandName));
+  const embed = client.embeds.get(commandName)
   if (!command) return message.reply('Commande invalide !!!');
 
   function permlevel(message) {
@@ -39,5 +38,5 @@ module.exports = (client: any, message: any) => {
   }
   message.author.permLevel = level;
   client.logger.log(`${message.author.username} (${message.author.id} - ${config.permLevels.find(l => l.level === level).name}) lance la commande ${command.help.name}`);
-  command.run(client, message, args, level);
+  command.run(client, message, args, embed, level);
 }
