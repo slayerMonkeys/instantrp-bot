@@ -5,6 +5,7 @@ import loadCommands from './Loader/command';
 import * as YAML from 'yamljs';
 import * as path from 'path';
 import sequelize from './config/sequelize.config';
+import loadEmbeds from './Loader/embed';
 
 
 const client: any = new Client();
@@ -16,8 +17,9 @@ for (let i=0; i < config.permLevels.length; i++) {
     const thisLevel = config.permLevels[i];
     client.levelCache[thisLevel.name] = thisLevel.level;
 }
-["commands"].forEach((x) => client[x] = new Collection());
+["commands", "embeds"].forEach((x) => client[x] = new Collection());
 
 loadEvents(client);
 loadCommands(client);
+loadEmbeds(client);
 client.login(client.setting.token)
