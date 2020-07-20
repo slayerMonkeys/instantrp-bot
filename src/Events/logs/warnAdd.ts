@@ -12,7 +12,7 @@ module.exports = async (client: any, message: Message, member: GuildMember, reas
     .setAuthor('Warn LOG', message.guild.iconURL())
     .addFields([
       {
-        name: "Personne qui a éxecuté la commande",
+        name: "Modérateur",
         value: `${message.author}`,
       },
       {
