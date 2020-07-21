@@ -11,7 +11,7 @@ import loadEmbeds from './Loader/embed';
 const client: any = new Client();
 client.setting = YAML.load(path.resolve(__dirname, 'config/setting.yml'));
 client.logger = require(path.resolve(__dirname, 'utils/logger'));
-client.sequelize = sequelize
+client.sequelize = sequelize;
 client.levelCache = {};
 for (let i=0; i < config.permLevels.length; i++) {
     const thisLevel = config.permLevels[i];

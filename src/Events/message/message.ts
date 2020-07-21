@@ -12,6 +12,8 @@ module.exports = (client: any, message: any) => {
   const embed = client.embeds.get(commandName)
   if (!command) return message.reply('Commande invalide !!!');
 
+  message.settings = config.moderationRole
+
   function permlevel(message) {
     let permlvl = 0;
 
