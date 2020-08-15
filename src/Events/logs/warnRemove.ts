@@ -1,11 +1,11 @@
-import { Message, GuildMember, MessageEmbed, TextChannel } from "discord.js"
-import { getChannelLog } from "../../services/guildSettingsService"
+import {GuildMember, Message, MessageEmbed, TextChannel} from "discord.js"
+import {getChannelLog} from "../../services/guildSettingsService"
 
 module.exports = async (client: any, message: Message, member: GuildMember, warn: any, numero: number) => {
     const channelLogId = await getChannelLog(client.sequelize, message.guild, 'misc')
     const channel: TextChannel = client.channels.cache.find((c) => c.id === channelLogId)
     const embed = new MessageEmbed()
-    .setColor(2240347)
+        .setColor(16729871)
     .setTimestamp(new Date())
     .setFooter('Warn LOG', client.user.displayAvatarURL())
     .setThumbnail(member.user.displayAvatarURL())

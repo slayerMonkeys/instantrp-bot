@@ -1,5 +1,5 @@
-import { GuildMember, VoiceChannel, TextChannel, MessageEmbed } from "discord.js";
-import { getChannelLog } from "../../services/guildSettingsService";
+import {GuildMember, MessageEmbed, TextChannel, VoiceChannel} from "discord.js";
+import {getChannelLog} from "../../services/guildSettingsService";
 
 module.exports = async (client: any, member: GuildMember, channel: VoiceChannel) => {
     const channelLogId = await getChannelLog(client.sequelize, member.guild, 'misc')
@@ -9,6 +9,6 @@ module.exports = async (client: any, member: GuildMember, channel: VoiceChannel)
         .setDescription(`${member}** a quitté le salon vocal: **${channel.name}`)
         .setFooter(`(ID: ${member.id})`)
         .setTimestamp(new Date())
-        .setColor('RANDOM')
+        .setColor(4437377)
     channelLogs.send(embed)
 }

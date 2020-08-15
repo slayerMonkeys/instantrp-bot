@@ -1,5 +1,5 @@
-import { getChannelLog } from "../../services/guildSettingsService"
-import { TextChannel, MessageEmbed, Message, Collection, Snowflake, GuildAuditLogs } from "discord.js"
+import {getChannelLog} from "../../services/guildSettingsService"
+import {Collection, GuildAuditLogs, Message, MessageEmbed, Snowflake, TextChannel} from "discord.js"
 
 module.exports = async (client: any, messages: Collection<Snowflake, Message>) => {
     const message: Message = messages.first()
@@ -12,11 +12,10 @@ module.exports = async (client: any, messages: Collection<Snowflake, Message>) =
     const channelLogId = await getChannelLog(client.sequelize, message.guild, 'message')
     const channel: TextChannel = client.channels.cache.find((c) => c.id === channelLogId)
 
-
     const embed = await new MessageEmbed()
         .setAuthor(executor.tag, executor.displayAvatarURL())
         .addField(`Plusieurs messages supprimés dans ${message.channel}`, message.content)
-        .setColor(2059775)
+        .setColor(16729871)
         .setTimestamp(new Date())
     channel.send(embed)
 

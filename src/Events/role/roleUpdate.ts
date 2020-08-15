@@ -1,5 +1,5 @@
-import { Role, TextChannel, MessageEmbed, GuildAuditLogs } from "discord.js";
-import { getChannelLog } from "../../services/guildSettingsService";
+import {GuildAuditLogs, MessageEmbed, Role, TextChannel} from "discord.js";
+import {getChannelLog} from "../../services/guildSettingsService";
 
 module.exports = async (client: any, oldRole: Role, newRole: Role) => {
     if(oldRole.position !== newRole.position) return
@@ -15,7 +15,7 @@ module.exports = async (client: any, oldRole: Role, newRole: Role) => {
         .setAuthor(executor.username, executor.displayAvatarURL())
         .setFooter(`(ID: ${oldRole.id})`)
         .setTimestamp(new Date())
-        .setColor('RANDOM')
+        .setColor(0)
         .addFields([
             {
                 name:'Nom',

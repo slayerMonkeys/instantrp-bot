@@ -1,5 +1,5 @@
-import { Invite, TextChannel, MessageEmbed } from "discord.js";
-import { getChannelLog } from "../../services/guildSettingsService";
+import {Invite, MessageEmbed, TextChannel} from "discord.js";
+import {getChannelLog} from "../../services/guildSettingsService";
 
 module.exports = async (client: any, invite: Invite) => {
     const member = invite.guild.member(invite.inviter)
@@ -14,6 +14,6 @@ module.exports = async (client: any, invite: Invite) => {
         .setDescription(`${member}** a créé un lien d'invitation: **${invite.url}`)
         .setFooter(`(ID: ${member.id})`)
         .setTimestamp(new Date())
-        .setColor('RANDOM')
+        .setColor(4437377)
     channelLogs.send(embed)
 }

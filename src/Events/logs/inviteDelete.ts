@@ -1,5 +1,5 @@
-import { Invite, TextChannel, MessageEmbed } from "discord.js";
-import { getChannelLog } from "../../services/guildSettingsService";
+import {Invite, MessageEmbed, TextChannel} from "discord.js";
+import {getChannelLog} from "../../services/guildSettingsService";
 
 module.exports = async (client: any, invite: Invite) => {
     if(invite.inviter === client.user) return
@@ -18,6 +18,6 @@ module.exports = async (client: any, invite: Invite) => {
         .setDescription(`${member}** a supprimé le lien d'invitation: **${invite.url}`)
         .setFooter(`(ID: ${member.id})`)
         .setTimestamp(new Date())
-        .setColor('RANDOM')
+        .setColor(16729871)
     channelLogs.send(embed)
 }

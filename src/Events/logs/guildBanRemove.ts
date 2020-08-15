@@ -1,5 +1,5 @@
-import { MessageEmbed, TextChannel, Guild, User } from "discord.js"
-import { getChannelLog } from "../../services/guildSettingsService"
+import {Guild, MessageEmbed, TextChannel, User} from "discord.js"
+import {getChannelLog} from "../../services/guildSettingsService"
 
 module.exports = async (client: any, guild: Guild, user: User) => {
     const channelLogId = await getChannelLog(client.sequelize, guild, 'misc')
@@ -11,10 +11,10 @@ module.exports = async (client: any, guild: Guild, user: User) => {
     const latestBanRemove = fetchGuildAuditLogs.entries.first();
     const { executor } = latestBanRemove
     const embed = new MessageEmbed()
-    .setAuthor('Unban LOG', guild.iconURL())
-    .setFooter(`Unban LOG`)
-    .setTimestamp(new Date())
-    .setColor(53581)
+        .setAuthor('Unban LOG', guild.iconURL())
+        .setFooter(`Unban LOG`)
+        .setTimestamp(new Date())
+        .setColor(16729871)
     .setThumbnail(user.displayAvatarURL())
     .addFields([{
         name: "Modérateur",

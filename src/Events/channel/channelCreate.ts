@@ -1,5 +1,5 @@
-import { GuildChannel, MessageEmbed, TextChannel } from "discord.js";
-import { getChannelLog } from "../../services/guildSettingsService";
+import {GuildChannel, MessageEmbed, TextChannel} from "discord.js";
+import {getChannelLog} from "../../services/guildSettingsService";
 
 module.exports = async (client: any, channel: GuildChannel) => {
     const channelLogId = await getChannelLog(client.sequelize, channel.guild, 'misc')
@@ -10,11 +10,12 @@ module.exports = async (client: any, channel: GuildChannel) => {
     });
     const latestChannelCreate = fetchGuildAuditLogs.entries.first();
     const { executor } = latestChannelCreate
+    if (executor.bot) return
     const embed = new MessageEmbed()
         .setAuthor(executor.username, executor.displayAvatarURL())
         .setDescription(`**Salon créé: ${channel.name}**`)
         .setFooter(`(ID: ${channel.id})`)
         .setTimestamp(new Date())
-        .setColor('RANDOM')
+        .setColor(4437377)
     channelLogs.send(embed)
 }

@@ -1,5 +1,5 @@
-import { Role, TextChannel, MessageEmbed, GuildAuditLogs } from "discord.js";
-import { getChannelLog } from "../../services/guildSettingsService";
+import {GuildAuditLogs, MessageEmbed, Role, TextChannel} from "discord.js";
+import {getChannelLog} from "../../services/guildSettingsService";
 
 module.exports = async (client: any, role: Role) => {
     const channelLogId = await getChannelLog(client.sequelize, role.guild, 'misc')
@@ -15,6 +15,6 @@ module.exports = async (client: any, role: Role) => {
         .setDescription(`**Nouveau role créé: ${role.name}**`)
         .setFooter(`(ID: ${role.id})`)
         .setTimestamp(new Date())
-        .setColor('RANDOM')
+        .setColor(4437377)
     channel.send(embed)
 }
