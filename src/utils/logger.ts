@@ -1,9 +1,7 @@
 import * as chalk from 'chalk';
 import * as moment from 'moment';
+import {ILogs} from '../typescript/interface';
 
-interface ILogs {
-    (content: string, type?: string):void;
-}
 
 class Logger {
     static log: ILogs = (content, type = "log") => {
