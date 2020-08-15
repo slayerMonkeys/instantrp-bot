@@ -1,5 +1,5 @@
-import { Message } from "discord.js";
-import { IHelp } from "../../utils/interface";
+import {Message} from "discord.js";
+import {IHelp} from "../../typescript/interface";
 
 module.exports.run = (client, message: Message, args) => {
     message.channel.bulkDelete(args[0]).then(() => {
@@ -42,9 +42,10 @@ module.exports.run = (client, message: Message, args) => {
 
 const help: IHelp = {
     name: "clear",
-    aliases: ["clear"],
+    description: 'Supprime le nombre de message mis en argument',
+    aliases: ["clr"],
     category: "modération",
-    permLevel: "Admin",
-    ownercommand: false
-  };
+    permLevel: "Modo",
+    usages: ['clear <Nombre de message>']
+};
 module.exports.help = help;
