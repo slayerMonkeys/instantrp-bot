@@ -1,4 +1,4 @@
-import { IHelp } from "../../utils/interface";
+import { IHelp } from "../../typescript/interface";
 
 module.exports.run = async (client, message) => {
     const msg = await message.channel.send("Ping!🏓");
@@ -12,9 +12,10 @@ module.exports.run = async (client, message) => {
 
 let help: IHelp = {
     name: 'ping',
-    aliases: ['ping'],
+    description: 'Donne le ping du bot et de l\'api',
+    aliases: ['pong'],
     category: 'misc',
     permLevel: "Utilisateur",
-    ownercommand: false
+    usages: ['ping']
 }
 module.exports.help = help;

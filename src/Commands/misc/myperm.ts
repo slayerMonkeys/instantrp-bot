@@ -1,4 +1,4 @@
-import { IHelp } from "../../utils/interface";
+import { IHelp } from "../../typescript/interface";
 import { Message } from "discord.js";
 import config from '../../config/main.config';
 
@@ -9,9 +9,9 @@ module.exports.run = async (client: any, message: Message, args: string[], embed
 
 let help: IHelp = {
     name: 'myperm',
-    aliases: ['myperm'],
+    description: 'Donne le niveau de permission de l\'utilisateur',
     category: 'misc',
     permLevel: "Utilisateur",
-    ownercommand: false
+    usages: ['myperm']
 }
 module.exports.help = help;
