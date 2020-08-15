@@ -1,5 +1,5 @@
-import { Sequelize } from "sequelize/types"
-import { GuildMember } from "discord.js";
+import {Sequelize} from "sequelize/types"
+import {GuildMember} from "discord.js";
 
 export async function getWarnsByUser(sequelize: Sequelize, member: GuildMember) {
     const warnModel = require('../models/warn')(sequelize);
@@ -12,10 +12,10 @@ export async function getWarnsByUser(sequelize: Sequelize, member: GuildMember) 
     return cb;
 }
 
-export async function createWarn(sequelize: Sequelize, member: GuildMember, reason: string, ) {
+export async function createWarn(sequelize: Sequelize, member: GuildMember, reason: string) {
     const warnModel = require('../models/warn')(sequelize);
-    const countWarn = await warnModel.count({ where: { userId: member.id }});
-    const warn = await warnModel.build({ userId: member.id, reason: reason, countWarn: countWarn + 1})
+    const countWarn = await warnModel.count({where: {userId: member.id}});
+    const warn = await warnModel.build({userId: member.id, reason: reason, countWarn: countWarn + 1})
     await warn.save()
     return {
         valid: true,

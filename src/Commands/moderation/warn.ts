@@ -1,6 +1,6 @@
-import { IHelp } from "../../utils/interface";
-import { createWarn, getWarnsByUser, removeWarn, countWarn } from "../../services/warnService";
-import { GuildMember, Message, MessageEmbed } from "discord.js";
+import {IHelp} from "../../typescript/interface";
+import {countWarn, createWarn, getWarnsByUser, removeWarn} from "../../services/warnService";
+import {GuildMember, Message, MessageEmbed} from "discord.js";
 import * as moment from 'moment'
 
 module.exports.run = async (client, message: Message, args: string[], embed) => {
@@ -25,16 +25,16 @@ module.exports.run = async (client, message: Message, args: string[], embed) => 
     const warnsize = await countWarn(client.sequelize, warnMember);
     if(warnsize < 0 || warnsize < args[2]) return message.reply('Warn invalid !');
     const cb = await removeWarn(client.sequelize, warnMember, Number(args[2]));
-    if(cb){ 
-      client.emit('warnRemove', message, warnMember, cb, args[2])
-      return message.reply(`Vous avez supprimé le warn ${args[2]} de ${warnMember}`);
-    } else return message.reply('Error !');
+      if (cb) {
+          client.emit('warnRemove', message, warnMember, cb, args[2])
+          return message.reply(`Vous avez supprimé le warn ${args[2]} de ${warnMember}`);
+      } else return message.reply('Error !');
   } else {
     const reason = args.slice(1).join(' ');
     if (!reason) return message.reply('Vous devez mettre une raison !');
     const staffRole = message.guild.roles.cache.find(r => r.id === '716019522183757944');
-    if (!staffRole) return message.reply('Error !')
-    if (warnMember.roles.cache.has(staffRole.id)) return message.reply('Vous ne pouvez pas kick un membre du staff')
+      if (!staffRole) return message.reply('Error !')
+      if (warnMember.roles.cache.has(staffRole.id)) return message.reply('Vous ne pouvez pas warn un membre du staff')
     const cb = await createWarn(client.sequelize, warnMember, reason);
     cb.valid ? message.channel.send(`Vous avez mis un warn à ${warnMember.user.username}`) : message.channel.send('Error !');
     client.emit("warnAdd", message, warnMember, reason);
@@ -48,10 +48,11 @@ module.exports.run = async (client, message: Message, args: string[], embed) => 
 
 
 const help: IHelp = {
-  name: "warn",
-  aliases: ["warn"],
-  category: "modération",
-  permLevel: "Modo",
-  ownercommand: false
+    name: "warn",
+    description: 'Ajoute/Supprime un warn a un utilisateur ou donne la liste des warn de l\'utilisateur',
+    aliases: ["warn"],
+    category: "modération",
+    permLevel: "Modo",
+    usages: ['warn <Mention> <Raison>', 'warn <Mention> <IDwarn>', 'warn list <Mention>']
 };
 module.exports.help = help;
