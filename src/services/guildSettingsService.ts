@@ -1,5 +1,5 @@
-import { Sequelize, Model } from "sequelize/types";
-import { Snowflake, Guild } from "discord.js";
+import {Model, Sequelize} from "sequelize/types";
+import {Guild, Snowflake} from "discord.js";
 
 export async function createGuildSetting(sequelize: Sequelize, guild: Guild) {
     const guildSettingModel = require('../models/guildSettings')(sequelize);
@@ -11,10 +11,33 @@ export async function createGuildSetting(sequelize: Sequelize, guild: Guild) {
     return guildSetting;
 }
 
+export async function getModeWhitelist(sequelize: Sequelize, guild: Guild) {
+    const guildSettingModel = require('../models/guildSettings')(sequelize);
+    const guildSetting = await guildSettingModel.findOne({
+        where: {
+            guildId: guild.id
+        },
+        attributes: ['whitelist']
+    });
+    return guildSetting.whitelist;
+}
+
+export async function updateModeWhitelist(sequelize: Sequelize, guild: Guild, isWhitelist: boolean) {
+    const guildSettingModel = require('../models/guildSettings')(sequelize);
+    const cb = await guildSettingModel.update({
+        whitelist: isWhitelist
+    }, {
+        where: {
+            guildId: guild.id
+        }
+    });
+    return cb;
+}
+
 export async function setLogsChannel(sequelize: Sequelize, guild: Guild, type: string, channelID: Snowflake) {
     const guildSettingModel: Model = require('../models/guildSettings')(sequelize);
     let cb;
-    if(type === 'message') {
+    if (type === 'message') {
         cb = await guildSettingModel.update({
             channelLogs_message: channelID
         }, {
@@ -47,7 +70,7 @@ export async function setLogsChannel(sequelize: Sequelize, guild: Guild, type: s
 export async function getChannelLog(sequelize, guild, type) {
     const guildSettingModel = require('../models/guildSettings')(sequelize);
     const guildSetting = await guildSettingModel.findOne({
-        where: { 
+        where: {
             guildId: guild.id
         },
         attributes: ['channelLogs_message', 'channelLogs_chan', 'channelLogs_misc']

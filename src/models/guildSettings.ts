@@ -1,14 +1,15 @@
-import { DataTypes, Sequelize } from 'sequelize';
-import { IGuildSettingsInstance } from '../utils/interface';
+import {DataTypes, Sequelize} from 'sequelize';
+import {IGuildSettingsInstance} from '../typescript/interface';
+
 module.exports = (sequelize: Sequelize) => {
-  const guildSettingsShema = {
-    id: {
-      type: DataTypes.INTEGER.UNSIGNED,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    guildId: {
-      type: new DataTypes.STRING(255),
+    const guildSettingsShema = {
+        id: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            autoIncrement: true,
+            primaryKey: true,
+        },
+        guildId: {
+            type: new DataTypes.STRING(255),
       allowNull: false,
     },
     owner: {
@@ -16,19 +17,22 @@ module.exports = (sequelize: Sequelize) => {
       allowNull: false,
     },
     channelLogs_message: {
-      type: new DataTypes.STRING(255),
-      allowNull: true,
+        type: new DataTypes.STRING(255),
+        allowNull: true,
     },
-    channelLogs_chan: {
-      type: new DataTypes.STRING(255),
-      allowNull: true,
-    },
-    channelLogs_misc: {
-      type: new DataTypes.STRING(255),
-      allowNull: true,
-    }
-  };
+        channelLogs_chan: {
+            type: new DataTypes.STRING(255),
+            allowNull: true,
+        },
+        channelLogs_misc: {
+            type: new DataTypes.STRING(255),
+            allowNull: true,
+        },
+        whitelist: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+        }
+    };
 
-  const guildSettingsModel = sequelize.define<IGuildSettingsInstance>('guildSettings', guildSettingsShema);
-  return guildSettingsModel;
+    return sequelize.define<IGuildSettingsInstance>('guildSettings', guildSettingsShema);
 }

@@ -19,24 +19,28 @@ module.exports = {
       },
       channelLogs_message: {
         allowNull: true,
-        type: Sequelize.STRING
+          type: Sequelize.STRING
       },
-      channelLogs_chan: {
-        allowNull: true,
-        type: Sequelize.STRING
-      },
-      channelLogs_misc: {
-        allowNull: true,
-        type: Sequelize.STRING
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
+        channelLogs_chan: {
+            allowNull: true,
+            type: Sequelize.STRING
+        },
+        channelLogs_misc: {
+            allowNull: true,
+            type: Sequelize.STRING
+        },
+        whitelist: {
+            allowNull: false,
+            type: Sequelize.BOOLEAN
+        },
+        createdAt: {
+            allowNull: false,
+            type: Sequelize.DATE
+        },
+        updatedAt: {
+            allowNull: false,
+            type: Sequelize.DATE
+        }
     });
   },
   down: async (queryInterface, Sequelize) => {

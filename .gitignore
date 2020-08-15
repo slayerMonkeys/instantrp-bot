@@ -2,3 +2,5 @@ src/Config/
 build/
 node_modules/
 instant_bot.dmm
+
+.idea/
