@@ -1,5 +1,5 @@
-import { getChannelLog } from "../../services/guildSettingsService"
-import { TextChannel, MessageEmbed, Message } from "discord.js"
+import {getChannelLog} from "../../services/guildSettingsService"
+import {Message, MessageEmbed, TextChannel} from "discord.js"
 
 module.exports = async (client: any, message: Message) => {
     const channelLogId = await getChannelLog(client.sequelize, message.guild, 'message')
@@ -10,26 +10,27 @@ module.exports = async (client: any, message: Message) => {
     });
     const latestMessageDelete = fetchGuildAuditLogs.entries.first();
     let embed;
+    console.log(latestMessageDelete)
     if(latestMessageDelete) {
         const { executor } = latestMessageDelete
-        if(executor.id === client.user.id) return
+        if (executor.bot) return
         embed = await new MessageEmbed()
-        .setAuthor(executor.tag, executor.displayAvatarURL())
-        .addField(`Message envoyé par ${message.author}, supprimé dans ${message.channel}`, message.content)
-        .setColor(2059775)
+            .setAuthor(executor.tag, executor.displayAvatarURL())
+            .setDescription(`Message envoyé par ${message.author}, supprimé dans ${message.channel}\n${message.content}`)
+            .setColor(16729871)
         .setFooter(`(Autheur: ${message.author.id} | Message ID: ${message.id})`)
         .setTimestamp(new Date())
         channel.send(embed)
     } else {
-        if(message.author.id === client.user.id) return
+        if (message.author.bot) return
         embed = await new MessageEmbed()
-        .setAuthor(message.author.tag, message.author.displayAvatarURL())
-        .setDescription(`Message envoyé par ${message.author}, supprimé dans ${message.channel}\n${message.content}`)
-        .setColor(2059775)
+            .setAuthor(message.author.tag, message.author.displayAvatarURL())
+            .setDescription(`Message envoyé par ${message.author}, supprimé dans ${message.channel}\n${message.content}`)
+            .setColor(16729871)
         .setFooter(`(Autheur: ${message.author.id} | Message ID: ${message.id})`)
         .setTimestamp(new Date())
         channel.send(embed)
     }
-    
+
 
 }

@@ -1,0 +1,19 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+* {
+    font-family: 'Ubuntu', sans-serif;
+}
+#commands-card {
+    width: 350.5px;
+}
+.footer {
+    padding: 3rem 1.5rem 6rem;
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}

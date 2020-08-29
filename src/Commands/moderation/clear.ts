@@ -2,9 +2,10 @@ import {Message} from "discord.js";
 import {IHelp} from "../../typescript/interface";
 
 module.exports.run = (client, message: Message, args) => {
-    message.channel.bulkDelete(args[0]).then(() => {
+    message.delete()
+    message.channel.bulkDelete(args[0]).then((messages) => {
         message.channel
-            .send(`J'ai suppprimé ***${args[0]} messages*** pour vous !`)
+            .send(`J'ai suppprimé ***${messages.size} messages*** pour vous !`)
             .then(message => message.delete({ timeout: 5000 }));
     });
     client.emit('clearLogs', message, args[0])

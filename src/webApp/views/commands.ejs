@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <%- include('./modules/head', title) %>
+</head>
+
+<body>
+<header>
+    <%- include('./modules/navbar', {user: user, bot: bot}) %>
+</header>
+<div class="container mx-auto">
+    <h1 class="text-3xl text-center font-bold">Commandes</h1>
+
+    <% categorys.forEach(category => { %>
+        <div class="grid grid-cols-1">
+            <h2 class="text-center text-2xl font-bold"><%= category %></h2>
+            <div class="grid xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-1">
+                <% bot.commands.filter(cmd => cmd.help.category === category).array().forEach(cmd => { %>
+                    <div class="rounded-lg shadow-xl bg-gray-100 my-3 mx-auto" id="commands-card">
+                        <div class="flex justify-between border-b border-gray-800 px-5 py-4">
+                            <div>
+                                <span class="font-bold text-gray-700 text-lg"><%= cmd.help.name %></span>
+                            </div>
+                        </div>
+                        <div class="px-10 py-5 text-gray-600">
+                            Description: <%= cmd.help.description %><br/>
+                            <% const aliases = (!cmd.help.aliases) ? 'aucun' : cmd.help.aliases.join(', '); %>
+                            Aliase(s): <%= aliases %><br/>
+                            Utilisation(s): <%= cmd.help.usages.join('\n') %><br/>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+
+        </div>
+    <% }) %>
+</div>
+<footer class="w-full text-center border-t border-grey p-4 pin-b bg-gray-800">
+    <div class="text-center text-white">
+        <p>
+            <strong>
+                <% bot.user.username %>
+            </strong> by <a href="https://github.com/slayerMonkeys">SlayerMonkey</a>. The source code is licensed
+            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+            is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+        </p>
+    </div>
+</footer>
+</body>
+</html>
