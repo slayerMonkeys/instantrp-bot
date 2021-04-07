@@ -89,7 +89,7 @@ module.exports = (client) => {
     })
 
     indexRouter.post('/patch-note/add', (req: any, res) => {
-        const patchNoteWebHook = new WebhookClient('745647965158375486', 'MVi5ixkvdYfFzYN2wVeucFt8onbjZYH-V9of1CONvhT8FJXOX_tQ-Bv27pYQlqvE8lyA')
+        const patchNoteWebHook = new WebhookClient('aaa', 'aaaa')
         console.log(req.body)
         if(req.body.content_patch_note.length < 1 ) {
             console.log('test')
