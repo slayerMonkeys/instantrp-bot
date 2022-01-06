@@ -34,7 +34,7 @@
     "morgan": "^1.10.0",
     "mysql2": "^2.1.0",
     "node-fetch": "^2.6.1",
-    "parse-link-header": "^1.0.1",
+    "parse-link-header": "^2.0.0",
     "passport": "^0.4.1",
     "passport-discord": "^0.1.4",
     "request-promise": "^4.2.6",
