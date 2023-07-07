@@ -9,7 +9,7 @@ module.exports = (passport) => {
     });
 
     passport.use(new Strategy({
-            clientID: "536616272595779584",
+            clientID: "<client-id>",
             clientSecret: "chech",
             callbackURL: "http://127.0.0.1:5000/callback",
             scope: ["identify", "guilds"],
